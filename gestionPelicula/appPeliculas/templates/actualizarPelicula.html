@@ -51,10 +51,10 @@
                 <select name="cbGenero" id="cbGenero" class="formSelect" required>
                     <option value="">Seleccione</option>
                 {% for g in generos %}
-                {% if g.id == pelicula.pelGenero.id %}
-                    <option value="{{g.id}}" selected>{{g.getNombre}}</option>
+                {% if g.pk == pelicula.pelGenero.pk %}
+                    <option value="{{g.pk}}" selected>{{g.getNombre}}</option>
                 {%else%}
-                    <option value="{{g.id}}">{{g.getNombre}}</option>
+                    <option value="{{g.pk}}">{{g.getNombre}}</option>
                 {%endif%}
                 {%endfor%}
                 </select>
@@ -75,7 +75,7 @@
                 </div>
             </div>
 
-            <input type="hidden" name="idPelicula" value="{{pelicula.id}}">
+            <input type="hidden" name="idPelicula" value="{{pelicula.pk}}">
 
 
 

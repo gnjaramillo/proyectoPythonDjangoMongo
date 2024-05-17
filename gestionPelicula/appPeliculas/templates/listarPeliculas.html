@@ -90,9 +90,9 @@
                     <td>{{ p.pelGenero.getNombre }}</td>
                     <td>
                         <!-- ruta consultar pelicula, luego actualizar -->
-                        <a href="/consultarPeliculaPorId/{{ p.id }}"><i class="fa fa-edit text-warning" title="Editar" style="cursor: pointer;"></i></a>  
+                        <a href="/consultarPeliculaPorId/{{ p.pk }}"><i class="fa fa-edit text-warning" title="Editar" style="cursor: pointer;"></i></a>  
                         <!-- ruta eliminar pelicula -->
-                        <i class="fa fa-trash text-danger" title="eliminar" onclick="eliminarPelicula('{{ p.id }}')" style="cursor: pointer;"></i>
+                        <i class="fa fa-trash text-danger" title="eliminar" onclick="eliminarPelicula('{{ p.pk }}')" style="cursor: pointer;"></i>
                     </td>
                     
                 </tr>

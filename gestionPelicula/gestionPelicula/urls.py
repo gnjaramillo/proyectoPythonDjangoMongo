@@ -28,9 +28,9 @@ urlpatterns = [
     path('vistaAgregarPelicula/', views.vistaAgregarPelicula),
     path('agregarPelicula/', views.agregarPelicula),
     path('listarPeliculas/', views.listarPeliculas),
-    path('consultarPeliculaPorId/<int:id>', views.consultarPeliculaPorId),
+    path('consultarPeliculaPorId/<str:id>', views.consultarPeliculaPorId),
     path('actualizarPelicula/', views.actualizarPelicula),
-    path('eliminarPelicula/<int:id>', views.eliminarPelicula),   
+    path('eliminarPelicula/<str:id>', views.eliminarPelicula),   
 
 ]
 

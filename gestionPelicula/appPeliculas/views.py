@@ -6,7 +6,8 @@ from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from pathlib import Path
 import os
 from django.conf import settings
-from bson import objectid
+from bson import ObjectId
+
 
 # Create your views here. las peticiones del cliente siempre deben tener request
 
@@ -62,7 +63,7 @@ def agregarPelicula(request):
         duracion = int(request.POST['txtDuracion'])
         resumen = request.POST['txtResumen']
         foto = request.FILES['fileFoto']
-        idGenero = objectid(request.POST['cbGenero'])
+        idGenero = ObjectId(request.POST['cbGenero'])
         genero = Genero.objects.get(pk=idGenero)
 
         #crear objeto pelicula
@@ -83,14 +84,14 @@ def agregarPelicula(request):
     except Error as error:
         mensaje =str(error)
 
-    retorno = {"mensaje": mensaje, "idPelicula":pelicula.id}
+    retorno = {"mensaje": mensaje, "idPelicula":pelicula.pk}
     # return JsonResponse(retorno) 
     return render(request, "agregarPelicula.html", retorno)
 
 
 
 def consultarPeliculaPorId(request, id):
-    pelicula = Pelicula.objects.get(pk=id)
+    pelicula = Pelicula.objects.get(pk=ObjectId(id))
     generos = Genero.objects.all()
     #retornamos los generos en la interfaz
     retorno = {"pelicula":pelicula, "generos": generos}
@@ -100,7 +101,7 @@ def consultarPeliculaPorId(request, id):
 
 def actualizarPelicula(request):
     try:
-        idPelicula = request.POST['idPelicula']
+        idPelicula = ObjectId(request.POST['idPelicula'])
         #obtener pelicula por su id
         peliculaActualizar = Pelicula.objects.get(pk=idPelicula)
         #actualizar campos
@@ -109,7 +110,7 @@ def actualizarPelicula(request):
         peliculaActualizar.pelProtagonista=request.POST['txtProtagonista']
         peliculaActualizar.pelDuracion=int(request.POST['txtDuracion'])
         peliculaActualizar.pelResumen=request.POST['txtResumen']
-        idGenero = int(request.POST['cbGenero'])
+        idGenero = ObjectId(request.POST['cbGenero'])
         #obtener genero a partir de su id
         genero = Genero.objects.get(pk=idGenero)
         peliculaActualizar.pelGenero=genero
@@ -138,7 +139,7 @@ def actualizarPelicula(request):
 
 def eliminarPelicula(request,id):
     try:
-        peliculaEliminar = Pelicula.objects.get(pk=id)
+        peliculaEliminar = Pelicula.objects.get(pk=ObjectId(id))
         peliculaEliminar.delete()
         mensaje = "Película eliminada correctamente"
     except Error as error:
